@@ -31,13 +31,13 @@ const config = {
     radius: 60,
     curveness: 1,
     showEarth: true,
-    earthColor: '#c2ebb6',
+    earthColor: '#EDE3B7',
     showBuildings: true,
-    buildingsColor: '#fab8b8',
+    buildingsColor: '#D59674',
     showRoads: true,
-    roadsColor: '#828282',
+    roadsColor: '#253446',
     showWater: false,
-    waterColor: '#80a9d7',
+    waterColor: '#58949C',
     showCloud: true,
     cloudColor: '#fff',
 
@@ -69,22 +69,23 @@ const config = {
     }
 };
 
-const mvtUrlTpl = 'https://{s}.tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.mvt?api_key=EWFsMD1DSEysLDWd2hj2cw';
+const mvtUrlTpl = 'https://{s}.tile.nextzen.org/tilezen/vector/v1/256/all/{z}/{x}/{y}.mvt?api_key=zPG-aKmNQQ60P7Gwz7WgDg';
 
 const mainLayer = new maptalks.TileLayer('base', {
     tileSize: [256, 256],
     urlTemplate: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     subdomains: ['a', 'b', 'c']
 });
+const zoomBase = 16;
 const map = new maptalks.Map('map-main', {
     // center: [-0.113049, 51.498568],
     // center: [-73.97332, 40.76462],
-    center: [-74.0130345, 40.70635160000003],
-    zoom: 16,
+    center: [-73.215027, 44.479710],
+    zoom: zoomBase,
     baseLayer: mainLayer
 });
-map.setMinZoom(16);
-map.setMaxZoom(16);
+map.setMinZoom(zoomBase);
+map.setMaxZoom(zoomBase);
 
 const faces = [
     'pz', 'px', 'nz',
@@ -95,7 +96,7 @@ const vectorElements = [{
     type: 'buildings',
     geometryType: 'polygon',
     depth: feature => {
-        return (feature.properties.height || 30) / 10 + 1;
+        return (feature.properties.height || 30) / 3 + 1;
     }
 }, {
     type: 'roads',
